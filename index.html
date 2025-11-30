@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportPro : FUTURE GEAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo"><h1>SPORT<span class="highlight">PRO</span></h1></div>
+            <nav>
+                <a href="#categories" class="nav-link">PRODUCTS</a>
+                <a href="#cart" class="nav-link">CART <span id="cartCountBadge" class="badge">0</span></a>
+                <a href="#checkout" class="nav-link">PAYMENT</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>ELITE PERFORMANCE</h2>
+            <p>UPGRADE YOUR GEAR. UNLOCK YOUR LIMITS.</p>
+            <a href="#categories" class="btn-hero">EXPLORE INVENTORY</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="categories" class="page-section category-page">
+            <div class="section-header">
+                <h3>ARMORED INVENTORY</h3>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="content-wrapper">
+                <aside class="sidebar-filter">
+                    <h4>FILTER SYSTEM</h4>
+                    <div class="filter-group">
+                        <label>BRAND</label>
+                        <select id="brand" onchange="applyFilters()">
+                            <option value="">ALL BRANDS</option>
+                            <option value="Nike">Nike</option>
+                            <option value="Adidas">Adidas</option>
+                            <option value="Puma">Puma</option>
+                            <option value="Under Armour">Under Armour</option>
+                            <option value="Yonex">Yonex</option>
+                            <option value="Garmin">Garmin</option>
+                            <option value="Wilson">Wilson</option>
+                            <option value="Speedo">Speedo</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>COLOR MODE</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="black" onclick="applyFilters()"> BLACK</label><br>
+                            <label><input type="checkbox" value="white" onclick="applyFilters()"> WHITE</label><br>
+                            <label><input type="checkbox" value="blue" onclick="applyFilters()"> BLUE</label><br>
+                            <label><input type="checkbox" value="red" onclick="applyFilters()"> RED</label><br>
+                            <label><input type="checkbox" value="orange" onclick="applyFilters()"> ORANGE</label><br>
+                            <label><input type="checkbox" value="green" onclick="applyFilters()"> GREEN</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>PRICE RANGE</label>
+                        <div class="price-inputs" style="display:flex; gap:5px; align-items:center;">
+                            <input type="number" id="min-price" placeholder="MIN" onchange="applyFilters()">
+                            <span>-</span>
+                            <input type="number" id="max-price" placeholder="MAX" onchange="applyFilters()">
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="product-list" id="productList">
+                    </section>
+            </div>
+        </section>
+
+        <section id="cart" class="page-section cart-page">
+            <div class="section-header">
+                <h3>YOUR INVENTORY</h3>
+                <div class="underline"></div>
+            </div>
+            <div class="cart-wrapper">
+                <div class="cart-items-container">
+                    <table class="cart-table" style="width:100%">
+                        <thead><tr><th>ITEM</th><th>SIZE/COLOR</th><th>UNIT PRICE</th><th>QTY</th><th>TOTAL</th><th>ACT</th></tr></thead>
+                        <tbody id="cartItems"></tbody>
+                    </table>
+                </div>
+                <div class="cart-summary">
+                    <h4>ORDER SUMMARY</h4>
+                    <div class="summary-row"><span>Subtotal:</span><span id="subtotal">0 ฿</span></div>
+                    <div class="summary-row"><span>Shipping:</span><span id="shipping">0 ฿</span></div>
+                    <div class="summary-row total"><span>TOTAL:</span><span id="grandTotal">0 ฿</span></div>
+                    <a href="#checkout"><button class="btn-checkout">PROCEED TO CHECKOUT >></button></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="checkout" class="page-section checkout-page">
+            <div class="section-header">
+                <h3>SECURE CHECKOUT</h3>
+                <div class="underline"></div>
+            </div>
+            <div class="checkout-container">
+                <section class="shipping-info card-style">
+                    <h4>1. SHIPPING DATA</h4>
+                    <form id="shippingForm">
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label>FULL NAME (ชื่อ-นามสกุล)</label>
+                                <input type="text" id="name" required placeholder="เช่น สมชาย ใจดี">
+                            </div>
+                            <div class="form-group">
+                                <label>PHONE (เบอร์โทร)</label>
+                                <input type="tel" id="phone" required placeholder="08X-XXX-XXXX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>EMAIL (อีเมล)</label>
+                            <input type="email" id="email" required placeholder="name@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label>ADDRESS (บ้านเลขที่, หมู่, ซอย, ถนน, แขวง/ตำบล, เขต/อำเภอ)</label>
+                            <textarea id="address" rows="2" required placeholder="รายละเอียดที่อยู่..."></textarea>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label>PROVINCE (จังหวัด)</label>
+                                <input type="text" id="province" required placeholder="เช่น กรุงเทพมหานคร">
+                            </div>
+                            <div class="form-group">
+                                <label>POSTAL CODE (รหัสไปรษณีย์)</label>
+                                <input type="text" id="zip" required placeholder="เช่น 10110" pattern="[0-9]*" maxlength="5">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>NOTE (หมายเหตุ - ไม่บังคับ)</label>
+                            <input type="text" id="note" placeholder="เช่น ฝากไว้ที่ป้อมยาม">
+                        </div>
+                    </form>
+                </section>
+                
+                <section class="payment-section-wrapper">
+                    <div class="payment-info card-style">
+                        <h4>2. PAYMENT METHOD</h4>
+                        <div class="payment-options">
+                            <label class="option"><input type="radio" name="paymentMethod" value="Credit Card" checked><span>💳 CREDIT CARD</span></label>
+                            <label class="option"><input type="radio" name="paymentMethod" value="Bank Transfer"><span>🏦 BANK TRANSFER</span></label>
+                            <label class="option"><input type="radio" name="paymentMethod" value="COD"><span>🚚 CASH ON DELIVERY</span></label>
+                        </div>
+                    </div>
+                    <div class="order-summary-checkout card-style">
+                        <h4>3. CONFIRMATION</h4>
+                        <p style="color:#64748b; font-size:0.9rem;">ตรวจสอบความถูกต้องก่อนยืนยัน</p>
+                        <button class="btn-confirm" onclick="confirmOrder()">CONFIRM & DOWNLOAD INVOICE</button>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy;  SportPro Corp. // SYSTEM ONLINE</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
